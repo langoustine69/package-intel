@@ -88,7 +88,6 @@ addEntrypoint({
   key: 'overview',
   description: 'Free overview - popular packages across npm, PyPI, and crates.io',
   input: z.object({}),
-  price: "0",
   handler: async () => {
     const [react, requests, serde] = await Promise.all([
       fetchNpm('react'),
@@ -219,7 +218,6 @@ addEntrypoint({
   key: 'analytics',
   description: 'Payment analytics summary',
   input: z.object({ windowMs: z.number().optional() }),
-  price: "0",
   handler: async (ctx) => {
     const tracker = agent.analytics?.paymentTracker;
     if (!tracker) return { output: { error: 'Analytics not available' } };
@@ -239,7 +237,6 @@ addEntrypoint({
   key: 'analytics-transactions',
   description: 'Recent payment transactions',
   input: z.object({ windowMs: z.number().optional(), limit: z.number().optional().default(50) }),
-  price: "0",
   handler: async (ctx) => {
     const tracker = agent.analytics?.paymentTracker;
     if (!tracker) return { output: { transactions: [] } };
